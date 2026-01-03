@@ -1,0 +1,118 @@
+/* Reset */
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  height:100vh;
+  background: linear-gradient(to top, #ffb6c1 0%, #ffe6f0 100%);
+  overflow:hidden;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  position:relative;
+}
+
+/* Birthday card */
+.birthday-card {
+  position:relative;
+  background:#fff0f6;
+  padding:40px 30px;
+  border-radius:30px;
+  box-shadow: 0 15px 30px rgba(255,105,180,0.3);
+  text-align:center;
+  z-index:10;
+  max-width:350px;
+}
+
+.birthday-card h1 {
+  font-size:2rem;
+  color:#ff3366;
+  text-shadow: 2px 2px 5px #ff85c1;
+  margin-bottom:15px;
+}
+
+.birthday-card p {
+  font-size:1rem;
+  color:#a7006f;
+  margin-bottom:25px;
+}
+
+.btn {
+  padding:12px 25px;
+  font-size:1rem;
+  background:#ff6699;
+  color:#fff;
+  border:none;
+  border-radius:25px;
+  cursor:pointer;
+  box-shadow:0 5px 15px rgba(255,105,180,0.3);
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  transform: scale(1.1);
+  box-shadow:0 8px 20px rgba(255,105,180,0.5);
+}
+
+/* Balloons animation */
+.balloon-container {
+  position:absolute;
+  inset:0;
+  z-index:1;
+  pointer-events:none;
+}
+
+.balloon {
+  position:absolute;
+  bottom:-100px;
+  width:50px;
+  height:70px;
+  background:radial-gradient(circle at 50% 30%, #ff3366, #ff6699);
+  border-radius:50% 50% 50% 50%;
+  left: calc(var(--i) * 20%);
+  animation: floatBalloon linear infinite;
+  animation-duration: calc(8s + var(--i) * 2s);
+}
+
+@keyframes floatBalloon {
+  0% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-500px) rotate(15deg); }
+  100% { transform: translateY(-1000px) rotate(-15deg); }
+}
+
+/* Confetti animation */
+.confetti-container {
+  position:absolute;
+  inset:0;
+  z-index:2;
+  pointer-events:none;
+}
+
+.confetti {
+  position:absolute;
+  width:10px;
+  height:10px;
+  background: #ff4d94;
+  border-radius:50%;
+  left: calc(10% + 80% * var(--i,0));
+  top:100%;
+  animation: fall 4s linear infinite;
+  animation-delay: calc(var(--i,0) * 0.3s);
+}
+
+@keyframes fall {
+  0% { transform: translateY(0) rotate(0deg); opacity:1; }
+  100% { transform: translateY(-110vh) rotate(360deg); opacity:0; }
+}
+
+/* Mobile responsive */
+@media(max-width:480px){
+  .birthday-card {
+    padding:30px 20px;
+    max-width:300px;
+  }
+  .birthday-card h1 { font-size:1.5rem; }
+  .birthday-card p { font-size:0.9rem; }
+  .btn { padding:10px 20px; font-size:0.9rem; }
+  .balloon { width:35px; height:50px; }
+}
